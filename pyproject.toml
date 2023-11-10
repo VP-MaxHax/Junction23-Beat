@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "junction23"
+name = "junction23-beat"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]

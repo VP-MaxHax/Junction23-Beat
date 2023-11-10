@@ -4,6 +4,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.slider import Slider
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 
 class GamePage(BoxLayout):
     def __init__(self, bpm, **kwargs):
@@ -34,6 +35,9 @@ class GamePage(BoxLayout):
         self.accuracy_score = 10  # Start with full accuracy
         self.miss_penalty = 2  # Set the penalty for missing a beat
 
+        # Audio cue for the beat
+        self.beat_sound = SoundLoader.load('beep-03.wav')  # Change the filename accordingly
+
         # Schedule the beat based on BPM
         self.schedule_beat()
 
@@ -60,6 +64,10 @@ class GamePage(BoxLayout):
         self.beat_count += 1
         self.last_beat_time = Clock.get_time()  # Update the time of the last beat
         print(f'Beat {self.beat_count}')
+
+        # Play the beat sound
+        if self.beat_sound:
+            self.beat_sound.play()
 
     def on_button_press(self, instance):
         # Handle button press
